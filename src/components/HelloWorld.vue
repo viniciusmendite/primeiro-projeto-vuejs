@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1 v-bind:title="tagMessage">{{`Meu nome é ${name.toUpperCase()} e tenho ${Number(age) +1} anos`}}</h1>
   </div>
 </template>
 
@@ -8,7 +8,10 @@
 export default {
   name: 'HelloWorld',
   props: {
-    msg: String
+    msg: String,
+    name: String,
+    age: Number,
+    tagMessage: String,
   }
 }
 </script>
