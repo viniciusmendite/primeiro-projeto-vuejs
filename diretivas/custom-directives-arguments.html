@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Argumentos para Diretivas Personalizadas</title>
+</head>
+<body>
+  <div id="directives">
+    <h2 v-custom:[argument]="distance">{{name}}</h2> 
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+
+
+  <script>
+
+    Vue.directive('upper', {
+      inserted(el) {
+        el.innerText = el.innerText.toUpperCase();
+      }
+    });
+
+    function setDirection(element, binding) {
+      element.style.margin = 0;
+
+      let direction = binding.arg.toLowerCase();
+      let value = binding.value;
+
+      switch (direction) {
+        case 'left':
+        case 'right':
+        case 'bottom':
+        case 'top':
+
+          let newDirection = direction.charAt(0).toUpperCase() + direction.slice(1);
+
+          eval(`element.style.margin${newDirection} = value + 'px'`);
+          break;
+      
+        default:
+          console.error('Informe uma posição correta')
+          break;
+      }
+    }
+
+    let app = new Vue({
+      el: '#directives', // el significa qual elemento que vai ser iniciado
+      data: {
+        name: 'Vinícius Mendite',
+        argument: 'left',
+        distance: 150,
+      },
+      directives:  {
+        custom: {
+          bind(element, binding, vnode) {
+            setDirection(element, binding);
+          },
+          update(element, binding, vnode, oldvnode) {
+            setDirection(element, binding);
+          }
+        }
+      }
+    })
+
+    </script>
+</body>
+</html>
