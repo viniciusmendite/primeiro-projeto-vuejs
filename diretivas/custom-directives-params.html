@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parâmetros para Diretivas Personalizadas</title>
+</head>
+<body>
+  <div id="directives">
+    <h2 v-custom:parametro.mod1.mod2="'info'">{{name}}</h2> 
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+
+
+  <script>
+
+    Vue.directive('upper', {
+      inserted(el) {
+        el.innerText = el.innerText.toUpperCase();
+      }
+    })
+
+    let app = new Vue({
+      el: '#directives', // el significa qual elemento que vai ser iniciado
+      data: {
+        name: 'Vinícius Mendite',
+      },
+      directives:  {
+        custom: {
+          inserted(element, binding, vnode) {
+            //console.log(vnode)
+
+            element.style.color = 'red';
+          },
+          update(element, binding, vnode, oldvnode) {
+            console.log(vnode, oldvnode);
+
+            element.style.textDecoration = 'underline';
+          }
+        }
+      }
+    })
+
+    </script>
+</body>
+</html>
