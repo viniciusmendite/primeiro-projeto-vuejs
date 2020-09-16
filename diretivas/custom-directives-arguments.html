@@ -7,7 +7,8 @@
 </head>
 <body>
   <div id="directives">
-    <h2 v-custom:[argument]="distance">{{name}}</h2> 
+    <!-- <h2 v-custom:[argument]="distance">{{name}}</h2> recebendo 1 argumento -->
+    <h2 v-custom="{direction: argument, distance}">{{name}}</h2> <!-- recebendo vários argumentos -->
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
@@ -24,9 +25,16 @@
     function setDirection(element, binding) {
       element.style.margin = 0;
 
+      /*
+      recebendo 1 argumento
       let direction = binding.arg.toLowerCase();
       let value = binding.value;
-
+      */
+      
+      // recebendo vários argumento
+      let direction = binding.value.direction.toLowerCase();
+      let value = binding.value.distance;
+      
       switch (direction) {
         case 'left':
         case 'right':
