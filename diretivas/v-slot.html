@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diretivas: v-slot</title>
+</head>
+<body>
+  <div id="directives">
+    <text-component>
+      <template v-slot:header>
+        <h2>Esse é o cabeçalho</h2>
+      </template>
+      <template #paragrafo>
+        Paragrafo 1
+      </template>
+    </text-component>
+    <text-component>
+      <template #paragrafo>
+        Parágrafo 2
+      </template>
+    </text-component>
+    <text-component>
+        Parágrafo 3
+    </text-component>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+
+
+  <script>
+    
+    Vue.component('text-component', {
+      template: `
+            <div>
+              <header>
+                <slot name="header"></slot>
+              </header>
+              <p>
+                <slot name="paragrafo"></slot>
+              </p>
+            </div>
+      `,
+    });
+
+    let app = new Vue({
+      el: '#directives', // el significa qual elemento que vai ser iniciado
+      data: {
+      
+      },
+      methods: {
+        reverseMessage1() {
+          this.message1 = this.message1.split('').reverse().join('');
+        },
+        reverseMessage2() {
+          this.message2 = this.message2.split('').reverse().join('');
+        },
+        filterPersons(event) {
+          this.personsFiltred = this.persons.filter(name => {
+            return name.toUpperCase().includes(event.target.value.toUpperCase());
+          })
+        }
+      },
+      created() {
+        this.personsFiltred = this.persons;
+      }
+    })
+    </script>
+</body>
+</html>
