@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diretivas: v-on</title>
+</head>
+<body>
+  <div id="directives">
+    <p v-on:click="reverseMessage1">{{message1}}</p>
+
+    <h4 v-on:[eventname]="reverseMessage2">{{message2}}</h4>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+
+
+  <script>
+    let app = new Vue({
+      el: '#directives', // el significa qual elemento que vai ser iniciado
+      data: {
+        message1: 'Vue.js é demais !!!',
+        message2: 'Vue.js é sensacional !!!',
+        eventname: 'click',
+      },
+      methods: {
+        reverseMessage1() {
+          this.message1 = this.message1.split('').reverse().join('');
+        },
+        reverseMessage2() {
+          this.message2 = this.message2.split('').reverse().join('');
+        },
+      }
+    })
+    </script>
+</body>
+</html>
