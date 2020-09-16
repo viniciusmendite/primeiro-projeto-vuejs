@@ -9,6 +9,11 @@
   <div id="directives">
     <h2>Acesse o site abaixo</h2>
    <a :href="url" target="blank">Site da Hcode</a>
+
+   <p :[argument]="value">Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+     Quae exercitationem animi impedit minus atque? Nesciunt odit
+     ex quibusdam aperiam expedita blanditiis, magni dolor similique at
+     eos numquam voluptatem molestiae molestias!</p>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
@@ -19,6 +24,8 @@
       el: '#directives', // el significa qual elemento que vai ser iniciado
       data: {
         url: 'https://www.hcode.com.br',
+        argument: 'title',
+        value: 'Parágrafo do texto'
       },
     })
     </script>
