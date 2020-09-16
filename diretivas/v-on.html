@@ -10,6 +10,14 @@
     <p v-on:click="reverseMessage1">{{message1}}</p>
 
     <h4 v-on:[eventname]="reverseMessage2">{{message2}}</h4>
+
+    <hr>
+
+    <input type="text" placeholder="Filtrar pessoas" v-on:keyup="filterPersons">
+
+    <ul>
+      <li v-for="person in personsFiltred">{{person}}</li>
+    </ul>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
@@ -22,6 +30,9 @@
         message1: 'Vue.js é demais !!!',
         message2: 'Vue.js é sensacional !!!',
         eventname: 'click',
+        persons: ['Anthony Rafael', 'João Rangel', 'Glaucio Daniel',
+        'Ronaldo Braz', 'Marcus Ribeiro', 'Djalma Sindeaux'],
+        personsFiltred: [],
       },
       methods: {
         reverseMessage1() {
@@ -30,6 +41,14 @@
         reverseMessage2() {
           this.message2 = this.message2.split('').reverse().join('');
         },
+        filterPersons(event) {
+          this.personsFiltred = this.persons.filter(name => {
+            return name.toUpperCase().includes(event.target.value.toUpperCase());
+          })
+        }
+      },
+      created() {
+        this.personsFiltred = this.persons;
       }
     })
     </script>
