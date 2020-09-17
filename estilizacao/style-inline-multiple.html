@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estilos em linha - Objetos (Múltiplos Valores)</title>
+</head>
+<body>
+  <div id="styles">
+    <div :style="{display: displayStyle}">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, voluptatem. 
+      Nostrum quis cumque voluptas dolorem aspernatur non, impedit tenetur quo ipsum 
+      magni, nobis modi, ducimus dolorum quos nisi? Rem, eius?
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+
+
+  <script>
+
+    let app = new Vue({
+      el: '#styles', // el significa qual elemento que vai ser iniciado
+      data: {
+        displayStyle: ['-webki-box', '-moz-box-flex', '-ms-flexbox']
+      },
+    })
+
+    </script>
+</body>
+</html>
