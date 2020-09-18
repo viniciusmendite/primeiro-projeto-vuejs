@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Componentes - Global</title>
+
+</head>
+<body>
+  <div id="components">
+    <text-render text="Hcode Treinamentos"></text-render>
+    <text-render text="Sejam bem-vindos"></text-render>
+    <text-render text="Hello World"></text-render>
+
+    <hr>
+
+    <list-component></list-component>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+
+
+  <script>
+
+    Vue.component('text-render', {
+      props: ['text'],
+      template: `
+        <div>
+          <h4>{{text}}</h4>
+        </div>
+      `
+    });
+
+    Vue.component('list-component', {
+      template: `
+        <ul>
+          <li v-for="person in names">{{person}}</li>
+        </ul>
+      `,
+      data: function() {
+        return {
+          names: ['João Rangel', 'Gláucio Daniel', 'Vinícius Mendite']
+        }
+      }
+    })
+
+    let app = new Vue({
+      el: '#components', // el significa qual elemento que vai ser iniciado
+      data: {
+      },
+    })
+
+    </script>
+</body>
+</html>
